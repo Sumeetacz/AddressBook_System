@@ -1,4 +1,7 @@
-﻿namespace AddressBook
+﻿using System;
+using System.Collections.Generic;
+
+namespace AddressBook
 {
     class Contacts
     {
@@ -109,10 +112,8 @@
                 }
             }
         }
-        public static void Main(string[] args)
+        public void Access_to_Addressbook()
         {
-            Console.WriteLine("Welcome to Address Book Program");
-            AddressBookMain Book = new AddressBookMain();
             int Control;
             do
             {
@@ -133,13 +134,13 @@
                         int Number = Convert.ToInt32(Console.ReadLine());
                         for (int i = 0; i < Number; i++)
                         {
-                            Book.AddAddress();
+                            AddAddress();
                         }
                         break;
                     case 2:
                         while (Confirmation == 'y')
                         {
-                            Book.Edit();
+                            Edit();
                             Console.Write("\nEdit another? (y/n): ");
                             Confirmation = Convert.ToChar(Console.ReadLine());
                         }
@@ -147,7 +148,7 @@
                     case 3:
                         while (Confirmation == 'y')
                         {
-                            Book.Delete();
+                            Delete();
                             Console.Write("\nDelete another? (y/n): ");
                             Confirmation = Convert.ToChar(Console.ReadLine());
                         }
@@ -155,10 +156,39 @@
                     case 4:
                         while (Confirmation == 'y')
                         {
-                            Book.Display();
+                            Display();
                             Console.Write("Display another? (y/n): ");
                             Confirmation = Convert.ToChar(Console.ReadLine());
                         }
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Entry");
+                        break;
+                }
+            } while (Control != 0);
+        }
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to Address Book Program");
+            AddressBookMain Relatives = new AddressBookMain();
+            AddressBookMain Work = new AddressBookMain();
+            int Control;
+            do
+            {
+                Console.WriteLine("\nChoose an Address Book: ");
+                Console.WriteLine("1 for Relatives Address book");
+                Console.WriteLine("2 for Work Address Book");
+                Console.WriteLine("0 to EXIT");
+                Control = Convert.ToInt32(Console.ReadLine());
+                switch (Control)
+                {
+                    case 1:
+                        Relatives.Access_to_Addressbook();
+                        break;
+                    case 2:
+                        Work.Access_to_Addressbook();
+                        break;
+                    case 0:
                         break;
                     default:
                         Console.WriteLine("Invalid Entry");
